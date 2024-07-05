@@ -16,32 +16,18 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v3
-        with:
-          node-version: "18"
 
       - name: Install dependencies
-        run: npm install
+        uses: bahmutov/npm-install@v1
 
       - name: Build project
         run: npm run build
 
-      - name: Upload frontend build files
+      - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
         with:
-          name: frontend-files
-          path: ./frontend/dist # Path to frontend build output
-
-      - name: Upload admin build files
-        uses: actions/upload-artifact@v3
-        with:
-          name: admin-files
-          path: ./admin/dist # Path to admin build output
-
-      - name: Upload backend build files
-        uses: actions/upload-artifact@v3
-        with:
-          name: backend-files
-          path: ./backend/dist # Path to backend build output
+          name: production-files
+          path: ./dist
 
   deploy:
     name: Deploy
@@ -50,29 +36,14 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Download frontend artifact
+      - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: frontend-files
-          path: ./dist/frontend # Path to where frontend artifact will be downloaded
-
-      - name: Download admin artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: admin-files
-          path: ./dist/admin # Path to where admin artifact will be downloaded
-
-      - name: Download backend artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: backend-files
-          path: ./dist/backend # Path to where backend artifact will be downloaded
+          name: production-files
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist # Path to all downloaded artifacts
+          publish_dir: ./dist
