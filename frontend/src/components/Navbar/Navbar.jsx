@@ -65,7 +65,7 @@ const Navbar = ({ setShowLogin }) => {
               <li onClick={() => navigate("")}>
                 <img src={assets.bag_icon} alt="" />
                 <p>
-                  <a href="http://localhost:5173/add">Admin</a>
+                  <a href="http://localhost:5174/add">Admin</a>
                 </p>
               </li>
               <hr />
