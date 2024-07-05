@@ -5,7 +5,8 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "build": "nodemon server.js"
+    "build": "vite build",
+    "server": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",

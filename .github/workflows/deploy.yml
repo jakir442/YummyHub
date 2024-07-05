@@ -29,19 +29,19 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: frontend-files
-          path: ./frontend/build # Path to frontend build output
+          path: ./frontend/dist # Path to frontend build output
 
       - name: Upload admin build files
         uses: actions/upload-artifact@v3
         with:
           name: admin-files
-          path: ./admin/build # Path to admin build output
+          path: ./admin/dist # Path to admin build output
 
       - name: Upload backend build files
         uses: actions/upload-artifact@v3
         with:
           name: backend-files
-          path: ./backend/build # Path to backend build output
+          path: ./backend/dist # Path to backend build output
 
   deploy:
     name: Deploy

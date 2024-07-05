@@ -5,4 +5,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/yummyhub/",
   plugins: [react()],
+  build: {
+    outDir: "dist", // Pastikan output directory adalah 'dist'
+  },
 });
